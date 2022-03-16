@@ -1,7 +1,6 @@
 # id : 00001
-
-from unittest import result
-
+import sys
+sys.setrecursionlimit(10 ** 6)
 
 def print_patch(patch):
     print("-배추밭-")
