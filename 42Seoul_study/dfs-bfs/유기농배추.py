@@ -2,15 +2,20 @@
 import sys
 sys.setrecursionlimit(10 ** 6)
 
-def print_patch(patch):
-    print("-배추밭-")
-    for x in patch:
-        for y in x:
-            print(y, end=' ')
-        print()
+# 디버깅용
+# def print_patch(patch):
+#     print("-배추밭-")
+#     for x in patch:
+#         for y in x:
+#             print(y, end=' ')
+#         print()
 
 def worm_dfs(patch, pos, end):
+	if pos[0] < 0 or pos[1] < 0:
+		return
 	if pos[0] < end[0] and pos[1] < end[1] and patch[pos[1]][pos[0]] == 1:
+#		디버깅용
+#		print("-",str(pos),"-")
 		pos_l = []
 		pos_l = pos
   		# 방문한 곳 0으로 set
@@ -33,6 +38,8 @@ def count_worm(patch, end):
 	for y in range(end[1]):
 		for x in range(end[0]):
 			if patch[y][x] == 1:
+#				디버깅용
+#				print((x,y))
 				worm = worm + 1
 				# dfs로 방문한 곳 전부 0으로 치환
 				pos = [x, y]
@@ -63,4 +70,6 @@ if __name__ == "__main__":
 
 	# 배추밭별 지렁이 개수 구해서 출력하기
 	for patch in patches:
+#		디버깅용
+#		print_patch(patch[0])
 		print(count_worm(patch[0], patch[1]))
