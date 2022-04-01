@@ -1,5 +1,6 @@
 import sys
 input = sys.stdin.readline
+from itertools import combinations
 
 # 입력 받기 및 지도 생성
 N, M = map(int, input().split())
@@ -22,28 +23,20 @@ for row in range(N):
 # 최소 도시 치킨 거리 초기화
 MIN = 1000000
 
-def solve(dept, chicken_houses_t):
-	global M, MIN
-	# 치킨집들 중 M개가 선택 되면
-	if dept == M:
-		# 이때의 도시 치킨 거리를 구하기
-		tmp = 0
-		for h in homes:
-			mcd = 1000000
-			for c in chicken_houses_t:
-				mcd = min(mcd, abs(h[0] - c[0]) + abs(h[1] - c[1]))
-			tmp = tmp + mcd
-		# 방금 구한 도시 치킨 거리와 지금까지 구한 최소 도시 치킨 거리를 비교
-		MIN = min(MIN, tmp)
-		return
-	# 치킨집들 중 M개 선택하기
-	for c in chicken_houses:
-		if c in chicken_houses_t:
-			continue
-		chicken_houses_l = chicken_houses_t[:]
-		chicken_houses_l.append(c)
-		solve(dept + 1, chicken_houses_l)
+# 치킨집들 중 M개를 선택하는 조합 구하기
+c_comb = list(combinations(chicken_houses, M))
 
-solve(0, [])
+# 각 조합마다 도시 치킨거리를 구해서 최소 도시 치킨거리 갱신하기
+for comb in c_comb:
+	mcd = 0
+	for h in homes:
+		tmp = 10000000
+		for c in comb:
+			tmp = min(tmp, abs(h[0] - c[0]) + abs(h[1] - c[1]))
+		mcd = mcd + tmp
+		if mcd > MIN:
+			break
+	MIN = min(MIN, mcd)
+
 print(MIN)
 
