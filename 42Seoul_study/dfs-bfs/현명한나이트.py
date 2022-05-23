@@ -3,12 +3,12 @@ import sys
 input = sys.stdin.readline
 
 # 디버깅용
-def print_board(board):
-    print("-체스판-")
-    for x in board:
-        for y in x:
-            print(y, end=' ')
-        print()
+# def print_board(board):
+#     print("-체스판-")
+#     for x in board:
+#         for y in x:
+#             print(y, end=' ')
+#         print()
 
 def kill_enemy(board, queue):
 	while queue and enemies:
