@@ -22,5 +22,4 @@ def comb(arr, r):
                 result.append([arr[i]] + j)
     return result
 
-print(comb(weight, 2))
 print(len(comb(weight, 2)))

@@ -1,4 +1,3 @@
-
 # 조합 함수
 def comb(arr, r):
     result = []
