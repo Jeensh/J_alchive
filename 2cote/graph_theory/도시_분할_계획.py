@@ -41,7 +41,6 @@ max = routes[0][0]
 result = 0
 for r in routes:
     if find(parent, r[1]) != find(parent, r[2]):
-        print(r)
         union(parent, r[1], r[2])
         result += r[0]
         if max < r[0]:
