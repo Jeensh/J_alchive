@@ -42,4 +42,3 @@ for i in range(M):
 # 결과 출력
 for text in result:
     print(text)
-    
